@@ -218,3 +218,24 @@ body.light-mode {
     color: white;
     outline: none;
 }
+
+.edit-btn {
+    background-color: #FFA500 !important;
+    margin-left: 10px;
+}
+
+.edit-btn:hover {
+    background-color: #FF8C00 !important;
+}
+
+#editArticleContent {
+    width: 100%;
+    min-height: 200px;
+    margin: 15px 0;
+}
+
+.article-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
