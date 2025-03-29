@@ -14,11 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = document.querySelector('.close');
     
     let currentSelection = '';
+    let currentlyEditingIndex = null;
     
     // Hiển thị bài viết
     function displayArticles() {
         articleList.innerHTML = '';
-        
+    
         articles.forEach((article, index) => {
             const articleDiv = document.createElement('div');
             articleDiv.className = 'article';
@@ -31,21 +32,32 @@ document.addEventListener('DOMContentLoaded', function() {
                     `<span class="defined-term">${word}<span class="definition-tooltip">${definitions[word]}</span></span>`);
             });
             
-            articleDiv.innerHTML = `
-                <h3>Bài viết ${index + 1}</h3>
-                <div class="article-content">${processedContent}</div>
+        articleDiv.innerHTML = `
+            <h3>Bài viết ${index + 1}</h3>
+            <div class="article-content">${processedContent}</div>
+            <div class="article-actions">
+                <button class="edit-btn" data-index="${index}">Chỉnh sửa</button>
                 <button class="delete-article" data-index="${index}">Xóa bài</button>
-            `;
-            
-            articleList.appendChild(articleDiv);
-        });
+            </div>
+        `;
         
+        articleList.appendChild(articleDiv);
+    });
+       
         // Thêm sự kiện cho nội dung bài viết
         document.querySelectorAll('.article-content').forEach(content => {
             content.addEventListener('mouseup', handleTextSelection);
         });
+            // Thêm sự kiện cho nút chỉnh sửa
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = this.getAttribute('data-index');
+                openEditModal(index);
+            });
+        });
     }
     
+
     // Xử lý khi bôi đen văn bản
     function handleTextSelection(e) {
         const selection = window.getSelection();
@@ -108,7 +120,34 @@ document.addEventListener('DOMContentLoaded', function() {
             definitionModal.style.display = 'none';
         }
     });
+
+    // Hàm mở modal chỉnh sửa
+    function openEditModal(index) {
+        currentlyEditingIndex = index;
+        document.getElementById('editArticleContent').value = articles[index].content;
+        document.getElementById('editModal').style.display = 'block';
+    }
+
+    // Hàm lưu chỉnh sửa - SỬA LẠI THÀNH
+    document.getElementById('saveEdit')?.addEventListener('click', function() {
+        if (currentlyEditingIndex !== null) {
+            const newContent = document.getElementById('editArticleContent').value;
+            articles[currentlyEditingIndex].content = newContent;
+            localStorage.setItem('articles', JSON.stringify(articles)); // Sửa thành trực tiếp
+            document.getElementById('editModal').style.display = 'none';
+            displayArticles();
+        }
+    });
+
+    // Đóng modal chỉnh sửa - SỬA LẠI THÀNH
+    document.querySelector('.close-edit')?.addEventListener('click', function() {
+        document.getElementById('editModal').style.display = 'none';
+    });
     
+    function saveArticles() {
+        localStorage.setItem('articles', JSON.stringify(articles));
+    }
+        
     // Khởi tạo hiển thị
     displayArticles();
 });
