@@ -1,0 +1,220 @@
+:root {
+    --bg-dark: #121212;         /* Nền đen sẫm */
+    --bg-card: #1e1e1e;         /* Nền card */
+    --text-primary: #e0e0e0;    /* Chữ chính màu trắng nhạt */
+    --text-secondary: #b0b0b0;  /* Chữ phụ */
+    --accent-primary: #4fc3f7;  /* Màu nhấn xanh dương */
+    --accent-secondary: #81c784; /* Màu nhấn xanh lá */
+    --divider: #333333;         /* Đường phân cách */
+    --hover-effect: #2a2a2a;    /* Hiệu ứng hover */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.section {
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--divider);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.section:hover {
+    background-color: var(--hover-effect);
+}
+
+h1, h2, h3 {
+    color: var(--accent-primary);
+    font-weight: 500;
+}
+
+h1 {
+    border-bottom: 1px solid var(--divider);
+    padding-bottom: 10px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid var(--divider);
+    border-radius: 8px;
+    resize: vertical;
+    font-family: inherit;
+    background-color: #252525;
+    color: var(--text-primary);
+    transition: border 0.3s;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(79, 195, 247, 0.2);
+}
+
+button {
+    background-color: var(--accent-secondary);
+    color: #121212;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background-color: #66bb6a;
+    transform: translateY(-2px);
+}
+
+.article {
+    margin-bottom: 25px;
+    padding: 20px;
+    background-color: #252525;
+    border-left: 5px solid var(--accent-secondary);
+    border-radius: 8px;
+}
+
+.defined-term {
+    background-color: #004d40;
+    cursor: help;
+    position: relative;
+    color: var(--accent-primary);
+    padding: 0 2px;
+    border-radius: 3px;
+}
+
+.definition-tooltip {
+    visibility: hidden;
+    width: 280px;
+    background-color: #333;
+    color: white;
+    text-align: left;
+    border-radius: 8px;
+    padding: 15px;
+    position: absolute;
+    z-index: 100;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: var(--bg-card);
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.close {
+    color: var(--text-secondary);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: var(--text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin: 10px;
+    }
+    .modal-content {
+        width: 95%;
+        margin: 25% auto;
+    }
+}
+
+body.light-mode {
+    --bg-dark: #f5f5f5;
+    --bg-card: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --divider: #e0e0e0;
+    --hover-effect: #eeeeee;
+}
+
+.format-toolbar {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #252525;
+    border-radius: 8px;
+    flex-wrap: wrap;
+}
+
+.format-toolbar button, .format-toolbar select {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.format-toolbar button:hover {
+    background-color: #444;
+}
+
+.edit-article-btn {
+    background-color: #ff9800 !important;
+    margin-top: 10px;
+}
+
+.edit-article-btn:hover {
+    background-color: #f57c00 !important;
+}
+
+#articleContentEditable {
+    min-height: 150px;
+    padding: 15px;
+    background-color: #252525;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: white;
+    outline: none;
+}

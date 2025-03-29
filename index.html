@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Quản lý Định nghĩa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hệ thống Quản lý Định nghĩa</h1>
+        
+        <!-- Khu vực nhập bài viết mới -->
+        <div class="section">
+            <h2>Thêm bài viết mới</h2>
+            <textarea id="newArticle" placeholder="Dán nội dung bài viết vào đây..."></textarea>
+            <button id="addArticle">Thêm bài viết</button>
+        </div>
+        <!-- Danh sách bài viết -->
+        <div class="section">
+            <h2>Các bài viết của bạn</h2>
+            <div id="articleList"></div>
+        </div>
+        
+        <!-- Modal thêm định nghĩa -->
+        <div id="definitionModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Thêm định nghĩa mới</h3>
+                <p>Từ được chọn: <strong id="selectedWord"></strong></p>
+                <textarea id="definitionText" placeholder="Nhập định nghĩa..."></textarea>
+                <button id="saveDefinition">Lưu định nghĩa</button>
+            </div>
+        </div>
+
+
+        <!-- Thêm nút chỉnh sửa trong phần bài viết (sẽ được thêm bằng JS) -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
