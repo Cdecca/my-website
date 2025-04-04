@@ -62,12 +62,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleTextSelection(e) {
         const selection = window.getSelection();
         const selectedText = selection.toString().trim();
+        const wordCount = selectedText.split(' ').length;
         
-        if (selectedText.length > 0 && selectedText.split(' ').length === 1) {
+        if (selectedText.length > 0 && wordCount >= 1 && wordCount <= 10) {
             currentSelection = selectedText;
             selectedWordSpan.textContent = currentSelection;
             
-            // Nếu từ đã có định nghĩa, hiển thị để chỉnh sửa
             if (definitions[currentSelection]) {
                 definitionText.value = definitions[currentSelection];
             } else {
